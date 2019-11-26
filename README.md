@@ -10,14 +10,14 @@ Clock
   - AlarmIdleState
   - AlarmActiveState
   - SettingsState
-    - Model
-        - currTime
-        - isAlarmSet
-        - alarmTime
-    - View
-        - stateChangeButton
-        - faceChangeButton
-        - digitsChangeButton
+- Model
+ - currTime
+ - isAlarmSet
+ - alarmTime
+- View
+ - stateChangeButton
+ - faceChangeButton
+ - digitsChangeButton
 
 Life cycle of the clock
 [ Idle -> Alarm -> Settings ]
