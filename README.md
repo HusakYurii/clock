@@ -5,11 +5,11 @@ Structure of the Clock
 Clock
 - Controller
   - FSM
-   - IState
-   - IdleState
-   - AlarmIdleState
-   - AlarmActiveState
-   - SettingsState
+    - IState
+    - IdleState
+    - AlarmIdleState
+    - AlarmActiveState
+    - SettingsState
   
 - Model
  - currTime
