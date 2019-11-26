@@ -10,10 +10,12 @@ Clock
   - AlarmIdleState
   - AlarmActiveState
   - SettingsState
+  
 - Model
  - currTime
  - isAlarmSet
  - alarmTime
+ 
 - View
  - stateChangeButton
  - faceChangeButton
