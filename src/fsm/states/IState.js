@@ -1,14 +1,28 @@
+/**
+ * @interface IState
+ */
 export default class IState {
-  constructor(name = "noName", fsm) {
-    this._name = name;
-    this._fsm = fsm;
-  }
 
-  get name() {
-    return this._name;
-  }
+    /** 
+     * @param {String} name - state's name 
+     * @param {FSM} fsm 
+     */
+    constructor(name = "noName", fsm) {
+        this._name = name;
+        this._fsm = fsm;
+    }
 
-  get fsm() {
-    return this._fsm;
-  }
+    /** @abstract */
+    onEnterState() { }
+
+    /** @abstract */
+    onExitState(cb) { }
+
+    get name() {
+        return this._name;
+    }
+
+    get fsm() {
+        return this._fsm;
+    }
 }

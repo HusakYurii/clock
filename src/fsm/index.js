@@ -1,54 +1,74 @@
 import { SettingsState, AlarmIdleState, AlarmActiveState, IdleState } from "./states/index";
 
 export default class FSM {
-  constructor(appController) {
-    this.appController = appController;
-    this.states = [
-      new IdleState("idleState", this),
-      new AlarmIdleState("alarmState", this),
-      new AlarmActiveState("alarmState", this),
-      new SettingsState("settingsState", this),
-    ];
 
-    this.previousState = "";
-    this.currState = "";
-    this.transitions = null;
-  }
+    /** 
+     * @param {Object} clock - controller which has access to model and view 
+     */
+    constructor(clock) {
+        this._clock = clock;
 
-  setConfig({transitions}){
-    this.transitions = [...transitions];
-  }
+        this._states = [
+            new IdleState("idleState", this),
+            new AlarmIdleState("alarmState", this),
+            new AlarmActiveState("alarmState", this),
+            new SettingsState("settingsState", this),
+        ];
 
-  gotToIdleState(){
-    this.changeStateTo('idleState');
-  }
-
-  gotToAlarmIdleState(){
-    this.changeStateTo('alarmIdleState');
-  }
-
-  gotToAlarmAciveState(){
-    this.changeStateTo('alarmActiveState');
-  }
-
-  gotToSettingsState(){
-    this.changeStateTo('settingsState');
-  }
-
-  changeStateTo(newState){
-    if(this.currState){
-      const prevState =  this.getState(this.currState);
-      prevState.onExit();
+        this._previousState = "";
+        this._currState = "";
     }
 
-    this.previousState = this.currState;
-    this.currState = newState;
+    gotToIdleState() {
+        this.changeStateTo('idleState');
+    }
 
-    const state = this.getState(this.currState);
-    state.onEnter();
-  }
+    gotToAlarmIdleState() {
+        this.changeStateTo('alarmIdleState');
+    }
 
-  getState(name){
-    return this.states.find(state => state.name === name);
-  }
+    gotToAlarmAciveState() {
+        this.changeStateTo('alarmActiveState');
+    }
+
+    gotToSettingsState() {
+        this.changeStateTo('settingsState');
+    }
+
+    changeStateTo(newState) {
+        const onExitFinished = () => {
+            this.previousState = this.currState;
+            this.currState = newState;
+
+            const state = this.getState(this.currState);
+            state.onEnterState();
+        };
+
+        if (this.currState) {
+            const prevState = this.getState(this.currState);
+            prevState.onExitState(onExitFinished);
+        } else {
+            onExitFinished();
+        }
+    }
+
+    getState(name) {
+        return this.states.find(state => state.name === name);
+    }
+
+    get clock() {
+        return this._clock;
+    }
+
+    get states() {
+        return this._states;
+    }
+
+    get previousState() {
+        return this._previousState;
+    }
+
+    get currState() {
+        return this._currState;
+    }
 }
