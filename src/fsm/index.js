@@ -10,8 +10,8 @@ export default class FSM {
 
         this.states = [
             new IdleState("idleState", this),
-            new AlarmIdleState("alarmState", this),
-            new AlarmActiveState("alarmState", this),
+            new AlarmIdleState("alarmIdleState", this),
+            new AlarmActiveState("alarmActiveState", this),
         ];
 
         this.previousState = "";
