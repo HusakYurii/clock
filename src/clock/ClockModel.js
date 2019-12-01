@@ -8,7 +8,7 @@ export default class ClockModel {
         this.isAlarmSet = false;
         this.isIdleState = false;
         this.alarmTime = "99:99";
-        this.currTime = this.getSystemTime;
+        this.currTime = "99:99";
 
         this.mode = {
             hours: "24",
@@ -21,8 +21,13 @@ export default class ClockModel {
         };
     }
 
-    get getSystemTime() {
+    get newTime() {
         const [time] = new Date().toString().match(/\d\d:\d\d/);
+        return time;
+    }
+
+    updateTime(time) {
+        this.currTime = time;
     }
 
     setAlarmTime(time) {

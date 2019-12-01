@@ -13,7 +13,7 @@ export default class Clock {
         this.controller = new Controller();
         this.controller.onInitialize(new Model, new View);
 
-        this.fsm = new FSM(this.controller);
+        this.fsm = new FSM(this);
     }
 
     run() {
@@ -22,6 +22,6 @@ export default class Clock {
     }
 
     update(delta) {
-    
+        this.controller.onUpdate(delta);
     }
 }
