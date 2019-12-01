@@ -1,4 +1,4 @@
-import { SettingsState, AlarmIdleState, AlarmActiveState, IdleState } from "./states/index";
+import { AlarmIdleState, AlarmActiveState, IdleState } from "./states/index";
 
 export default class FSM {
 
@@ -12,7 +12,6 @@ export default class FSM {
             new IdleState("idleState", this),
             new AlarmIdleState("alarmState", this),
             new AlarmActiveState("alarmState", this),
-            new SettingsState("settingsState", this),
         ];
 
         this._previousState = "";
@@ -29,10 +28,6 @@ export default class FSM {
 
     gotToAlarmAciveState() {
         this.changeStateTo('alarmActiveState');
-    }
-
-    gotToSettingsState() {
-        this.changeStateTo('settingsState');
     }
 
     changeStateTo(newState) {
