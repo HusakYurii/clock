@@ -6,16 +6,16 @@ export default class FSM {
      * @param {Object} clock - controller which has access to model and view 
      */
     constructor(clock) {
-        this._clock = clock;
+        this.clock = clock;
 
-        this._states = [
+        this.states = [
             new IdleState("idleState", this),
             new AlarmIdleState("alarmState", this),
             new AlarmActiveState("alarmState", this),
         ];
 
-        this._previousState = "";
-        this._currState = "";
+        this.previousState = "";
+        this.currState = "";
     }
 
     gotToIdleState() {
@@ -37,6 +37,7 @@ export default class FSM {
 
             const state = this.getState(this.currState);
             state.onEnterState();
+            this.logState();
         };
 
         if (this.currState) {
@@ -51,19 +52,9 @@ export default class FSM {
         return this.states.find(state => state.name === name);
     }
 
-    get clock() {
-        return this._clock;
-    }
-
-    get states() {
-        return this._states;
-    }
-
-    get previousState() {
-        return this._previousState;
-    }
-
-    get currState() {
-        return this._currState;
+    logState() {
+        console.log(`State has been changed!
+            curr state: ${this.currState},
+            previous state: ${this.previousState}`);
     }
 }

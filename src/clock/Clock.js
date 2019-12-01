@@ -5,30 +5,23 @@ import FSM from "../fsm";
 
 export default class Clock {
     constructor() {
-        this._controller = null;
-        this._fsm = null;
+        this.controller = null;
+        this.fsm = null;
     }
 
     initialize() {
-        this._controller = new Controller();
-        this._controller.onInitialize(new Model, new View);
+        this.controller = new Controller();
+        this.controller.onInitialize(new Model, new View);
 
-        this._fsm = new FSM(this.controller);
+        this.fsm = new FSM(this.controller);
     }
 
     run() {
     	this.controller.onRun();
+        this.fsm.gotToIdleState();
     }
 
     update(delta) {
     
-    }
-
-    get controller() {
-        return this._controller;
-    }
-
-    get fsm() {
-        return this._fsm;
     }
 }

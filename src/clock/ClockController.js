@@ -1,13 +1,13 @@
 export default class ClockController {
     constructor() {
-        this._model = null;
-        this._view = null;
+        this.model = null;
+        this.view = null;
     }
 
     onInitialize(model, view) {
-        this._model = model;
-        this._view = view;
-        this._view.onInitialize(this.model.selectors);
+        this.model = model;
+        this.view = view;
+        this.view.onInitialize(this.model.selectors);
     }
 
     onRun() {
@@ -16,13 +16,5 @@ export default class ClockController {
 
     onUpdate(delta) {
     	
-    }
-    
-    get model() {
-        return this._model;
-    }
-
-    get view() {
-        return this._view;
     }
 }
