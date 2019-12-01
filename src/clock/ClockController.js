@@ -7,6 +7,7 @@ export default class ClockController {
     onInitialize(model, view) {
         this._model = model;
         this._view = view;
+        this._view.onInitialize(this.model.selectors);
     }
 
     onRun() {
