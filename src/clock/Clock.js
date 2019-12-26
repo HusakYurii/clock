@@ -21,6 +21,17 @@ export default class Clock {
     }
 
     update(delta) {
-        this.controller.onUpdate(delta);
+        if (!this.controller.model.isIdleState) return;
+
+        const { newTime, currTime } = this.controller.model;
+
+        if (newTime !== currTime) {
+            this.controller.model.updateTime(newTime);
+            this.controller.view.updateTime(newTime);
+        }
+
+        if (this.controller.model.isAlarmTime) {
+            this.fsm.gotToAlarmAciveState();
+        }
     }
 }

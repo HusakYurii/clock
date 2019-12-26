@@ -33,14 +33,26 @@ export default class ClockController {
         this.view.toggleButtons(false);
     }
 
-    onUpdate(delta) {
-        if (!this.model.isIdleState) return;
+    showAlarmTime() {
+        this.view.updateTime(this.model.alarmTime);
+    }
 
-        const { newTime, currTime } = this.model;
+    changeHours() {
+        this.incrimentFace("hours");
+    }
 
-        if (newTime !== currTime) {
-            this.model.updateTime(newTime);
-            this.view.updateTime(newTime);
-        }
+    changeMinutes() {
+        this.incrimentFace("minutes");
+    }
+
+    incrimentFace(name) {
+        const { mode } = this.model;
+        let [hh, mm] = this.model.alarmTime.split(":");
+
+        if(name === "hours") hh = (parseInt(hh) + 1) % mode[name];
+        else mm = (parseInt(mm) + 1) % mode[name];
+
+        this.model.setAlarmTime(`${hh}:${mm}`);
+        this.view.updateTime(`${hh}:${mm}`);
     }
 }

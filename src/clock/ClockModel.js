@@ -7,23 +7,24 @@ export default class ClockModel {
 
         this.isAlarmSet = false;
         this.isIdleState = false;
-        this.alarmTime = "99:99";
-        this.currTime = "99:99";
+        this.alarmTime = "00:00";
+        this.currTime = "00:00";
 
         this.mode = {
             hours: "24",
             minutes: "60"
-        };
-
-        this.counter = {
-            hours: 0,
-            minutes: 0
         };
     }
 
     get newTime() {
         const [time] = new Date().toString().match(/\d\d:\d\d/);
         return time;
+    }
+
+    get isAlarmTime() {
+        return (
+            !!this.currTime.match(this.alarmTime) && this.isAlarmSet
+        );
     }
 
     updateTime(time) {
