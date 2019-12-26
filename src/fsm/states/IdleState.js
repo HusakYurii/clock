@@ -20,6 +20,8 @@ export default class IdleState extends IState {
         const { controller } = this.fsm.clock;
         const { view: { buttons } } = controller;
 
+        controller.stopClock();
+
         buttons.forEach(({ _, element }) => element.onclick = null);
         cb();
     }
