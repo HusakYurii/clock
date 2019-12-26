@@ -28,16 +28,23 @@ export default class ClockModel {
     }
 
     updateTime(time) {
-        this.currTime = time;
+        this.currTime = ClockModel.fixTimeData(time, this.mode);
     }
 
     setAlarmTime(time) {
-        this.alarmTime = time;
+        this.alarmTime = ClockModel.fixTimeData(time, this.mode);
         this.isAlarmSet = this.isCorrectTime(time);
     }
 
     isCorrectTime(time) {
         const [hours, minutes] = time.split(":");
         return (hours < this.mode.hours && minutes < this.mode.minutes);
+    }
+
+    static fixTimeData(time, {hours, minutes}) {
+        const [hh, mm] = time.split(":");
+    
+        if(hh.length === hours.length && mm.length === minutes.length) return time;
+        else return `${"0".repeat(hours.length - hh.length)}${hh}:${"0".repeat(minutes.length - mm.length)}${mm}`;
     }
 }
