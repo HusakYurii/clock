@@ -5,6 +5,7 @@ import FSM from "../fsm";
 
 export default class Clock {
     constructor() {
+        this.debuggerMode = false;
         this.controller = null;
         this.fsm = null;
     }
@@ -14,6 +15,10 @@ export default class Clock {
         this.controller.onInitialize(new Model, new View);
 
         this.fsm = new FSM(this);
+
+        if(this.debuggerMode) {
+            window.CLOCK = this;
+        }
     }
 
     run() {

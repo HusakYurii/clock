@@ -15,7 +15,6 @@ export default class AlarmIdleState extends IState {
     }
 
     onButtonClick(event, name) {
-        console.log(name);
         switch (name) {
             case "changeHours":
                 this.fsm.clock.controller.changeHours();

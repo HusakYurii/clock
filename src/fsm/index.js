@@ -38,7 +38,10 @@ export default class FSM {
 
             const state = this.getState(this.currState);
             state.onEnterState();
-            this.logState();
+
+            if(this.clock.debuggerMode){
+                this.logState();
+            }
         };
 
         if (this.currState) {
@@ -54,8 +57,9 @@ export default class FSM {
     }
 
     logState() {
-        console.log(`State has been changed!
-            curr state: ${this.currState},
-            previous state: ${this.previousState}`);
+        console.log(`%c State has been changed!     
+            => previous state: ${this.previousState}    
+            => curr state: ${this.currState}    `,
+            "color: White; background: Black; font-size: 15px;");
     }
 }

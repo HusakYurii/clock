@@ -7,7 +7,7 @@ export default class AlarmActiveState extends IState {
         const { view: { buttons } } = controller;
 
         controller.enableButtons();
-        buttons.forEach(({ _, element }) =>   element.onclick = (event) => this.onButtonClick(event));
+        buttons.forEach(({ _, element }) => element.onclick = (event) => this.onButtonClick(event));
     }
 
     onButtonClick(event) {

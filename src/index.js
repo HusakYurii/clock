@@ -1,6 +1,8 @@
 import Clock from "./clock/Clock";
 
 const clock = new Clock();
+clock.debuggerMode = true;
+
 clock.initialize();
 clock.run();
 
@@ -10,5 +12,3 @@ const tiker = function () {
 };
 
 tiker();
-
-window.clock = clock;
