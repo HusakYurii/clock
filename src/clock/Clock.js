@@ -20,7 +20,7 @@ export default class Clock {
         this.fsm.gotToIdleState();
     }
 
-    update(delta) {
+    update() {
         if (!this.controller.model.isIdleState) return;
 
         const { newTime, currTime } = this.controller.model;
