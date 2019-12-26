@@ -1,3 +1,4 @@
+
 import { AlarmIdleState, AlarmActiveState, IdleState } from "./states/index";
 
 export default class FSM {
@@ -14,8 +15,8 @@ export default class FSM {
             new AlarmActiveState("alarmActiveState", this),
         ];
 
-        this.previousState = "";
-        this.currState = "";
+        this.previousState = null;
+        this.currState = null;
     }
 
     gotToIdleState() {
