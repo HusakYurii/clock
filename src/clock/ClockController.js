@@ -53,6 +53,6 @@ export default class ClockController {
         else mm = (parseInt(mm) + 1) % mode[name];
 
         this.model.setAlarmTime(`${hh}:${mm}`);
-        this.view.updateTime(`${hh}:${mm}`);
+        this.showAlarmTime();
     }
 }
