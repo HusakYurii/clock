@@ -17,7 +17,6 @@ export default class Clock {
     }
 
     run() {
-    	this.controller.onRun();
         this.fsm.gotToIdleState();
     }
 

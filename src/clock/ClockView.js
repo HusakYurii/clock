@@ -19,14 +19,12 @@ export default class ClockView {
         });
     }
 
-    desibleButtons() {
+    toggleButtons(deactivate) {
         const [_, hours, minutes] = this.buttons;
-        this.toggleButtons([hours, minutes], true);
-    }
+        const method = deactivate ? "setAttribute" : "removeAttribute";
 
-    toggleButtons(buttons, deactivate) {
-        buttons.forEach(({ element }) => {
-            element.setAttribute("disabled", deactivate);
+        [hours, minutes].forEach(({ element }) => {
+            element[method]("disabled", deactivate);
             element.classList.toggle("deactivated");
         });
     }
