@@ -37,6 +37,11 @@ export default class ClockController {
         this.view.updateTime(this.model.alarmTime);
     }
 
+    disableAlarm(){
+        this.model.setAlarmTime("00:00");
+        this.model.isAlarmSet = false;
+    }
+
     changeHours() {
         this.incrimentFace("hours");
     }
@@ -53,6 +58,8 @@ export default class ClockController {
         else mm = (parseInt(mm) + 1) % mode[name];
 
         this.model.setAlarmTime(`${hh}:${mm}`);
+        this.model.isAlarmSet = true;
+        
         this.showAlarmTime();
     }
 }

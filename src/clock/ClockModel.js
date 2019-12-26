@@ -33,12 +33,6 @@ export default class ClockModel {
 
     setAlarmTime(time) {
         this.alarmTime = ClockModel.fixTimeData(time, this.mode);
-        this.isAlarmSet = this.isCorrectTime(time);
-    }
-
-    isCorrectTime(time) {
-        const [hours, minutes] = time.split(":");
-        return (hours < this.mode.hours && minutes < this.mode.minutes);
     }
 
     static fixTimeData(time, {hours, minutes}) {
